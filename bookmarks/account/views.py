@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .forms import LoginForm
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -25,3 +25,9 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form':form})
+
+
+
+@login_required
+def dashboard(request):
+    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
