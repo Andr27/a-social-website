@@ -1,1 +1,4 @@
 .venv/
+.env
+cert.crt
+cert.key
