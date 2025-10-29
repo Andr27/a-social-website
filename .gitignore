@@ -2,3 +2,4 @@
 .env
 cert.crt
 cert.key
+bookmarks/db.sqlite3
