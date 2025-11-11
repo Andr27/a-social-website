@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from django.urls import reverse_lazy
 
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY')
@@ -50,6 +51,7 @@ SOCIAL_AUTH_PIPELINE = [
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -164,3 +166,9 @@ if DEBUG:
     import mimetypes
     mimetypes.add_type('application/javascript', '.js', True)
     mimetypes.add_type('text/css', '.css', True)
+
+
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username]),
+}
